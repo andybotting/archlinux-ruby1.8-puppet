@@ -1,0 +1,34 @@
+# Maintainer : Greg Sutcliffe <facter_aur (at) emeraldreverie.orgr>
+# Contributor : Hyacinthe Cartiaux <hyacinthe.cartiaux@free.fr>
+# Contributor: Thomas S Hatch <thatch45 (at) Gmail.com>
+# Contributor: Dave Simons <miouhpi (at) Gmail (dot) com>
+
+pkgname=facter
+pkgver=1.6.13
+pkgrel=1
+pkgdesc="A library for collecting facts about your system."
+arch=("any")
+url="http://puppetlabs.com/projects/facter/"
+license=("APACHE")
+depends=("ruby1.8" "inetutils" "net-tools")
+options=(!emptydirs)
+source=("http://puppetlabs.com/downloads/facter/facter-$pkgver.tar.gz"
+        "ipaddress.patch")
+md5sums=('d44822cd174ec2032e2981a1bcc5fee7'
+         'f28d8455671dc165627b14a5b7f0725c')
+
+package() {
+  cd $srcdir/facter-$pkgver
+
+  msg 'Applying ipaddress patch...'
+  patch -Np1 < ${srcdir}/ipaddress.patch
+
+  ruby-1.8 ./install.rb \
+      --destdir=$pkgdir \
+      --bindir=/usr/bin \
+      --sbindir=/usr/sbin
+
+  install -d -m755 "${pkgdir}/usr/share/licenses/${pkgname}"
+  install -m 644 "LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+}

@@ -1,0 +1,15 @@
+
+# Alredy build packages
+*.pkg.tar.xz
+
+# Source tarballs
+*.tar.gz
+*.tar.bz2
+*.tgz
+
+# Source GEMs
+*.gem
+
+# Build directories
+pkg/
+src/

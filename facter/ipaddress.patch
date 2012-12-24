@@ -1,0 +1,12 @@
+diff -Nur facter-1.6.13/lib/facter/ipaddress.rb facter-1.6.13.patch/lib/facter/ipaddress.rb
+--- facter-1.6.13/lib/facter/ipaddress.rb	2012-10-25 09:38:50.257032813 +1100
++++ facter-1.6.13.patch/lib/facter/ipaddress.rb	2012-10-25 09:39:59.396148641 +1100
+@@ -29,7 +29,7 @@
+     output = %x{/sbin/ifconfig 2>/dev/null}
+ 
+     output.split(/^\S/).each { |str|
+-      if str =~ /inet addr:([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/
++      if str =~ /inet ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/
+         tmp = $1
+         unless tmp =~ /^127\./
+           ip = tmp
