@@ -6,9 +6,9 @@ PACKAGES = \
 	ruby1.8-hiera-puppet \
 	ruby1.8-json \
 	ruby1.8-shadow \
-	facter \
-	puppet \
-	puppet-lint \
+	ruby1.8-facter \
+	ruby1.8-puppet \
+	ruby1.8-puppet-lint \
 
 all: install
 
