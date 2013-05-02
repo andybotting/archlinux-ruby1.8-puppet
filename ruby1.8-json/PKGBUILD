@@ -1,8 +1,8 @@
 # Maintainer: Alexander Rødseth <rodseth@gmail.com>
 # Contributor: Hyacinthe Cartiaux <hyacinthe.cartiaux(at)free.fr>
 # Contributor: Daenyth <Daenyth+Arch AT gmail DOT com>
-
-pkgname=ruby1.8-json
+_gemname=json
+pkgname=ruby1.8-$_gemname
 pkgver=1.6.6
 pkgrel=2
 pkgdesc="JSON implementation as a Ruby extension in C"
@@ -11,19 +11,16 @@ url="http://flori.github.com/json/"
 license=('GPL')
 depends=('ruby1.8')
 makedepends=('rubygems1.8')
-optdepends=('jruby' 'java-environment')
-source=("http://rubygems.org/downloads/json-$pkgver.gem")
+source=("http://rubygems.org/downloads/$_gemname-$pkgver.gem")
 noextract=("json-$pkgver.gem")
 md5sums=('f30f698dedad5770c68b6b48897f7e2f')
 
-build() {
-  gem-1.8 install -i "$pkgdir$(ruby-1.8 -rubygems -e'puts Gem.default_dir')" \
-    "json-$pkgver.gem" --no-user-install
-}
-
 package() {
-  # Removing files with references to $pkgdir
-  find "$pkgdir" -depth -type f -name "Makefile*" -exec rm {} \;
-}
+  cd "$srcdir"
+  # _gemdir is defined inside package() because if ruby[gems] is not installed on
+  # the system, makepkg will exit with an error when sourcing the PKGBUILD.
+  local _gemdir="$(ruby-1.8 -rubygems -e'puts Gem.default_dir')"
 
-# vim:set ts=2 sw=2 et:
+  gem-1.8 install --no-user-install --ignore-dependencies -i "$pkgdir$_gemdir" \
+    "$_gemname-$pkgver.gem"
+}

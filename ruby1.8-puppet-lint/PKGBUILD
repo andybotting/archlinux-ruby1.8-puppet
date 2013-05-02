@@ -1,5 +1,6 @@
 # Maintainer: Jochen Schalanda <jochen+aur AT schalanda.aname>
-pkgname=ruby1.8-puppet-lint
+_gemname=puppet-lint
+pkgname=ruby1.8-$_gemname
 pkgver=0.3.2
 pkgrel=1
 pkgdesc='Checks your Puppet manifests against the Puppetlabs style guide and alerts you to any discrepancies.'
@@ -7,7 +8,7 @@ arch=(any)
 url='https://github.com/rodjek/puppet-lint/'
 license=("MIT")
 depends=('ruby1.8' 'rubygems1.8' 'ruby1.8-puppet')
-source=("http://gems.rubyforge.org/gems/puppet-lint-$pkgver.gem")
+source=("http://gems.rubyforge.org/gems/$_gemname-$pkgver.gem")
 md5sums=('6016644d72c1794b7633e1b071e9487a')
 
 build() {
@@ -15,5 +16,5 @@ build() {
   local _gemdir="$(ruby-1.8 -rubygems -e'puts Gem.default_dir')"
 
   mkdir -p "$pkgdir/usr/bin"
-  gem-1.8 install -Vl --no-user-install --ignore-dependencies -i "$pkgdir$_gemdir" -n "$pkgdir/usr/bin" "$srcdir/puppet-lint-$pkgver.gem"
+  gem-1.8 install --no-user-install --ignore-dependencies -i "$pkgdir$_gemdir" -n "$pkgdir/usr/bin" "$_gemname-$pkgver.gem"
 }
