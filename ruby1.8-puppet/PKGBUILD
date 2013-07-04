@@ -37,7 +37,7 @@ package() {
   ruby-1.8 ./install.rb \
     --destdir=$pkgdir \
     --bindir=/usr/bin \
-    --sbindir=/usr/sbin \
+    --sbindir=/usr/bin \
     --mandir=/usr/share/man
 
   # Set up vim and emacs
