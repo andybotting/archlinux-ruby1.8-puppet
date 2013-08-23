@@ -16,10 +16,10 @@ all: install
 
 install:
 	for package in $(PACKAGES); do \
-		(cd $$package && makepkg -iscf) \
+		(cd $$package && makepkg --noconfirm -iscf) \
 	done
 
 clean:
 	for package in $(PACKAGES); do \
-		(cd $$package && rm -fr *.pkg.tar.xz *.tar.gz *.tar.bz2 *.tgz *.gem pkg/ src/) \
+		(cd $$package && rm -fr *.pkg.tar.xz *.tar.gz *.tar.bz2 *.tgz *.gem .MTREE .PKGINFO pkg/ src/) \
 	done

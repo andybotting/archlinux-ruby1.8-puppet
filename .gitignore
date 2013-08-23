@@ -14,5 +14,7 @@
 *.gem
 
 # Build directories
+.MTREE
+.PKGINFO
 pkg/
 src/
