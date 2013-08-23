@@ -1,3 +1,6 @@
+# Temp file
+*.part
+*.swp
 
 # Alredy build packages
 *.pkg.tar.xz
