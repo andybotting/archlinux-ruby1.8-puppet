@@ -8,12 +8,13 @@
 
 pkgname=ruby1.8-puppet
 pkgver=2.7.19
-pkgrel=2
+pkgrel=3
 pkgdesc="A system for automating system administration tasks."
 arch=("any")
 url="http://puppetlabs.com/projects/puppet/"
 license=("APACHE")
 depends=("ruby1.8" "ruby1.8-shadow" "ruby1.8-facter")
+provides=('puppet')
 backup=("etc/puppet/puppet.conf")
 options=(emptydirs)
 install="puppet.install"
