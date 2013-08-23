@@ -9,6 +9,8 @@ PACKAGES = \
 	ruby1.8-facter \
 	ruby1.8-puppet \
 	ruby1.8-puppet-lint \
+	ruby1.8-bson \
+	ruby1.8-mongo \
 
 all: install
 
