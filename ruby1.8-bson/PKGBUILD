@@ -1,7 +1,7 @@
 # Maintainer: eagletmt <eagletmt@gmail.com>
 _gemname=bson
 pkgname=ruby1.8-$_gemname
-pkgver=1.8.5
+pkgver=1.9.2
 pkgrel=1
 pkgdesc="Ruby BSON implementation for MongoDB"
 arch=("any")
@@ -11,7 +11,7 @@ depends=("ruby1.8")
 makedepends=('rubygems1.8')
 source=(https://rubygems.org/downloads/$_gemname-$pkgver.gem)
 noextract=($_gemname-$pkgver.gem)
-md5sums=('d8c29fa79bf285bab70304544044ab1b')
+sha256sums=('9489d0f7006e3b672ee470dbd69e27180cbccae0c73e88dadb3915005f96b405')
 
 build() {
   :

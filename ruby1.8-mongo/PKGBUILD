@@ -1,17 +1,17 @@
 # Maintainer: eagletmt <eagletmt@gmail.com>
 _gemname=mongo
 pkgname=ruby1.8-$_gemname
-pkgver=1.8.5
+pkgver=1.9.2
 pkgrel=1
 pkgdesc="Ruby driver for MongoDB"
 arch=("any")
 url='http://www.mongodb.org'
 license=("Apache")
-depends=("ruby1.8" "ruby1.8-bson>=1.8.5" "ruby1.8-bson<1.9")
+depends=("ruby1.8" "ruby1.8-bson=$pkgver")
 makedepends=('rubygems1.8')
 source=(https://rubygems.org/downloads/$_gemname-$pkgver.gem)
 noextract=($_gemname-$pkgver.gem)
-md5sums=('bc458a17cbfaccbefda177e8751f027f')
+sha256sums=('958ae3cdfb5727fd7c37d0dcacda82f3edbc53f8b90cff0707c09ce4b05444e5')
 
 build() {
   :
