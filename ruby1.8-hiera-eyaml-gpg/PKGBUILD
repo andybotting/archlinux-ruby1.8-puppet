@@ -1,0 +1,18 @@
+_gemname=hiera-eyaml-gpg
+pkgname=ruby1.8-$_gemname
+pkgver=0.1
+pkgrel=1
+pkgdesc='Store Hiera data in GPG encrypted YAML'
+arch=(any)
+url='http://github.com/sihil/hiera-eyaml-gpg'
+license=('MIT')
+depends=('ruby1.8' 'ruby1.8-hiera-eyaml>=1.3.4' 'ruby1.8-gpgme>=2.0.0')
+makedepends=('rubygems1.8')
+source=(http://gems.rubyforge.org/gems/$_gemname-$pkgver.gem)
+md5sums=('e8b09240896ba1271b03c4f8a40f7413')
+
+build() {
+  cd $srcdir
+  local _gemdir="$(ruby-1.8 -rubygems -e'puts Gem.default_dir')"
+  gem-1.8 install --no-user-install --ignore-dependencies -i "$pkgdir$_gemdir" "$_gemname-$pkgver.gem"
+}

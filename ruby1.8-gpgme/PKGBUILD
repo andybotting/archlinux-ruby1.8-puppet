@@ -1,0 +1,23 @@
+_gemname=gpgme
+pkgname=ruby1.8-$_gemname
+pkgver=2.0.2
+pkgrel=1
+pkgdesc="Ruby language binding of GPGME"
+arch=('x86_64' 'i686')
+url="http://github.com/ueno/ruby-gpgme"
+license=('GPL')
+depends=('ruby1.8' 'gpgme')
+makedepends=('rubygems1.8')
+source=("http://rubygems.org/downloads/$_gemname-$pkgver.gem")
+noextract=("$_gemname-$pkgver.gem")
+md5sums=('d9f2edc3d52d1aca06942b633e8f9b53')
+
+package() {
+  cd "$srcdir"
+  # _gemdir is defined inside package() because if ruby[gems] is not installed on
+  # the system, makepkg will exit with an error when sourcing the PKGBUILD.
+  local _gemdir="$(ruby-1.8 -rubygems -e'puts Gem.default_dir')"
+
+  gem-1.8 install --no-user-install --ignore-dependencies -i "$pkgdir$_gemdir" \
+    "$_gemname-$pkgver.gem"
+}

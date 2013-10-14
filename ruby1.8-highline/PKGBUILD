@@ -1,0 +1,23 @@
+_gemname=highline
+pkgname=ruby1.8-$_gemname
+pkgver=1.6.19
+pkgrel=1
+pkgdesc='A high-level IO library'
+arch=(any)
+url='http://projects.puppetlabs.com/projects/hiera/'
+license=('Ruby')
+depends=('ruby1.8')
+makedepends=('rubygems1.8')
+source=(http://gems.rubyforge.org/gems/$_gemname-$pkgver.gem)
+noextract=($_gemname-$pkgver.gem)
+md5sums=('33c87ec12f3aa7b2c547fa40642796c2')
+
+package() {
+  cd "$srcdir"
+  # _gemdir is defined inside package() because if ruby[gems] is not installed on
+  # the system, makepkg will exit with an error when sourcing the PKGBUILD.
+  local _gemdir="$(ruby-1.8 -rubygems -e'puts Gem.default_dir')"
+
+  gem-1.8 install --no-user-install --ignore-dependencies -i "$pkgdir$_gemdir" \
+    "$_gemname-$pkgver.gem"
+}
