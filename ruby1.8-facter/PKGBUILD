@@ -4,7 +4,7 @@
 # Contributor: Dave Simons <miouhpi (at) Gmail (dot) com>
 
 pkgname=ruby1.8-facter
-pkgver=1.6.13
+pkgver=1.7.3
 pkgrel=1
 pkgdesc="A library for collecting facts about your system."
 arch=("any")
@@ -12,16 +12,14 @@ url="http://puppetlabs.com/projects/facter/"
 license=("APACHE")
 depends=("ruby1.8" "inetutils" "net-tools")
 options=(!emptydirs)
-source=("http://puppetlabs.com/downloads/facter/facter-$pkgver.tar.gz"
-        "ipaddress.patch")
-md5sums=('d44822cd174ec2032e2981a1bcc5fee7'
-         'f28d8455671dc165627b14a5b7f0725c')
+source=("http://puppetlabs.com/downloads/facter/facter-$pkgver.tar.gz")
+md5sums=('7de012396f8ec4287fc3991ca6242151')
 
 package() {
   cd $srcdir/facter-$pkgver
 
-  msg 'Applying ipaddress patch...'
-  patch -Np1 < ${srcdir}/ipaddress.patch
+  #msg 'Applying ipaddress patch...'
+  #patch -Np1 < ${srcdir}/ipaddress.patch
 
   ruby-1.8 ./install.rb \
       --destdir=$pkgdir \
