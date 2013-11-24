@@ -3,15 +3,15 @@ SKIP = \
 PACKAGES = \
 	ruby1.8 \
 	rubygems1.8 \
+	ruby1.8-json \
+	ruby1.8-json_pure \
 	ruby1.8-hiera \
-	ruby1.8-hiera-json \
 	ruby1.8-hiera-puppet \
 	ruby1.8-highline \
 	ruby1.8-trollop \
 	ruby1.8-gpgme \
 	ruby1.8-hiera-eyaml \
 	ruby1.8-hiera-eyaml-gpg \
-	ruby1.8-json \
 	ruby1.8-shadow \
 	ruby1.8-facter \
 	ruby1.8-puppet \
@@ -23,7 +23,9 @@ all: install
 
 install:
 	for package in $(PACKAGES); do \
-		(cd $$package && makepkg --noconfirm -iscf) \
+		(cd $$package; \
+		. ./PKGBUILD; \
+		[ "`pacman -Q $$package 2>/dev/null`" == "$$pkgname $$pkgver-$$pkgrel" ] || makepkg --noconfirm -iscf) \
 	done
 
 clean:
